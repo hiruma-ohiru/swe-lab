@@ -2,12 +2,24 @@
 #include <math.h>
 using namespace std;
 
-int y_func(int x, int n) {
+void checkValidInput() {
+    if (cin.fail()) {
+        throw "Incorrect input!";
+    }
+}
+
+void checkValidParams(int n) {
+    if (n < 3) {
+        throw "Incorrect input data!";
+    }
+}
+
+double y_func(int x, int n) {
     double y = 0;
     if (x <= 0) {
         for (int i = 2; i <= n - 1; i++) {
-            //cout << (double) x / i << " = " << x << " / " << i << endl;
-            y += (double) x / i;
+            cout << (double)x / i << " = " << x << " / " << i << endl;
+            y += (double)x / i;
         }
     }
     else {
@@ -21,25 +33,54 @@ int y_func(int x, int n) {
     return y;
 }
 
-int main()
-{
-    int a, b, n, step;
-
-    cout << "Input a = ";
-    cin >> a;
-
-    cout << "Input b = ";
-    cin >> b;
-
-    cout << "Input n = ";
-    cin >> n;
-
-    cout << "Input step = ";
-    cin >> step;
-
+void calculateInRange(int a, int b, int step, int n) {
     for (int x = a; x <= b; x += step) {
         cout << "x = " << x << "; y = " << y_func(x, n) << endl;
     }
+}
 
+void checkRange(int& a, int& b) {
+    if (a > b) {
+        int tmp = a;
+        a = b;
+        b = tmp;
+    }
+}
+
+int main()
+{
+    try {
+
+        int a, b, n, step;
+
+        cout << "Input a = ";
+        cin >> a;
+        checkValidInput();
+
+        cout << "Input b = ";
+        cin >> b;
+        checkValidInput();
+        checkRange(a, b);
+
+        cout << "Input n (>= 3); n = ";
+        cin >> n;
+        checkValidParams(n);
+
+        cout << "Input step = ";
+        cin >> step;
+        checkValidInput();
+
+        calculateInRange(a, b, step, n);
+
+    }
+    catch (const char* ex) {
+        cout << ex << endl;
+        return -1;
+    }
+
+    catch (...) {
+        cout << "Unknown error" << endl;
+        return -2;
+    }
     return 0;
 }
