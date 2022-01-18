@@ -7,7 +7,7 @@ int y_func(int x, int n) {
     if (x <= 0) {
         for (int i = 2; i <= n - 1; i++) {
             //cout << (double) x / i << " = " << x << " / " << i << endl;
-            y += x / i;
+            y += (double) x / i;
         }
     }
     else {
