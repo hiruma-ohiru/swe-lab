@@ -13,7 +13,7 @@ namespace UnitTests
 		TEST_METHOD(y_func_get3and2_3returned)
 		{
 			int n = 3;
-			int x = 2;
+			double x = 2;
 			double expected = 3;
 
 			double actual = y_func(x, n);
@@ -24,7 +24,7 @@ namespace UnitTests
 		TEST_METHOD(y_func_get4andmin6_min5returned)
 		{
 			int n = 4;
-			int x = -6;
+			double x = -6;
 			double expected = -5;
 
 			double actual = y_func(x, n);
