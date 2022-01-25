@@ -48,7 +48,6 @@ void checkRange(double& a, double& b) {
 int main()
 {
     try {
-
         double a, b, step;
         int n;
 
